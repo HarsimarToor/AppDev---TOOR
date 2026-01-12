@@ -1,15 +1,17 @@
+"use client";
+import { FaFacebook } from "react-icons/fa";
+
 import Link from "next/link";
 
 export default function Header() {
   return (
     <>
-      {/* This is our new header  */}
-
+      {/* This is our new header */}
       <div className="sticky top-0 border-b border-t">
         {/* this is for fixing */}
         <div className="flex justify-between">
           {" "}
-          {/* this is for spcaing and margin */}
+          {/* this is for spacing and margin */}
           <div className="ml-4">
             <span className="text-2xl font-bold"> Dashboard</span>
           </div>
@@ -20,14 +22,12 @@ export default function Header() {
             >
               Home
             </Link>
-
             <Link
               className="p-2 rounded-full mr-2 hover:bg-blue-500 hover:text-white"
               href="/about"
             >
               About
             </Link>
-
             <Link
               className="p-2 rounded-full mr-2 hover:bg-blue-500 hover:text-white"
               href="/contact"
@@ -37,7 +37,6 @@ export default function Header() {
           </nav>
         </div>
       </div>
-
       {/* End of Header and start of the main div */}
     </>
   );
@@ -45,14 +44,16 @@ export default function Header() {
 
 export function Footer() {
   return (
-    <>
-      {/* This is our new footer  */}
-
-      <div className="fixed bottom-0 w-full border-b border-t text-center">
-        This is the footer
-      </div>
-
-      {/* End of  footer */}
-    </>
+    <div className="fixed bottom-0 w-full border-t text-right p-2">
+      <a
+        href="https://facebook.com/yourusername"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-2 p-2 rounded-full hover:bg-blue-500 hover:text-white transition"
+      >
+        <FaFacebook className="text-xl" />
+        <span>Facebook</span>
+      </a>
+    </div>
   );
 }
