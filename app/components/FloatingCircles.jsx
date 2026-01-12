@@ -1,44 +1,77 @@
-"use client"; // because we use React state/effect
+"use client";
 
 import { useEffect, useState } from "react";
+
+const TOP_OFFSET = 80; // height of the header
 
 export default function FloatingCircles() {
   const [circles, setCircles] = useState([]);
 
-  // Initialize circles with random positions, sizes, and speeds
   useEffect(() => {
-    const temp = [];
-    const colors = ["#FF6B6B", "#6BCB77", "#4D96FF", "#FFD93D", "#9B5DE5"];
-    for (let i = 0; i < 7; i++) {
-      temp.push({
+    const colors = [
+      "#FF6B6B",
+      "#6BCB77",
+      "#2461b6ff",
+      "#c4b267ff",
+      "#9B5DE5",
+      "#97db77ff",
+      "#6068c0ff",
+      "#5294c3e3",
+      "#97db77ff",
+    ];
+
+    const temp = Array.from({ length: 25 }).map((_, i) => {
+      const size = Math.random() * 80 + 70; // 70 - 150px
+      const x = Math.random() * (window.innerWidth - size);
+      const y =
+        Math.random() * (window.innerHeight - TOP_OFFSET - size) + TOP_OFFSET;
+
+      return {
         id: i,
-        size: Math.random() * 50 + 20, // 20px - 70px
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
-        dx: (Math.random() - 0.5) * 2, // movement speed
-        dy: (Math.random() - 0.5) * 2,
+        size,
+        x,
+        y,
+        dx: (Math.random() - 0.5) * 1.5,
+        dy: (Math.random() - 0.5) * 1.5,
         color: colors[Math.floor(Math.random() * colors.length)],
-      });
-    }
+        opacity: Math.random() * 0.25 + 0.05,
+      };
+    });
+
     setCircles(temp);
   }, []);
 
-  // Animate circles
   useEffect(() => {
     const interval = setInterval(() => {
       setCircles((prev) =>
         prev.map((c) => {
-          let newX = c.x + c.dx;
-          let newY = c.y + c.dy;
+          let nextX = c.x + c.dx;
+          let nextY = c.y + c.dy;
+          let dx = c.dx;
+          let dy = c.dy;
 
-          // Bounce off edges
-          if (newX < 0 || newX + c.size > window.innerWidth) c.dx *= -1;
-          if (newY < 0 || newY + c.size > window.innerHeight) c.dy *= -1;
+          // Horizontal bounds
+          if (nextX <= 0) {
+            nextX = 0;
+            dx *= -1;
+          } else if (nextX + c.size >= window.innerWidth) {
+            nextX = window.innerWidth - c.size;
+            dx *= -1;
+          }
 
-          return { ...c, x: newX, y: newY };
+          // Vertical bounds
+          if (nextY <= TOP_OFFSET) {
+            nextY = TOP_OFFSET;
+            dy *= -1;
+          } else if (nextY + c.size >= window.innerHeight) {
+            nextY = window.innerHeight - c.size;
+            dy *= -1;
+          }
+
+          return { ...c, x: nextX, y: nextY, dx, dy };
         })
       );
-    }, 16); // ~60fps
+    }, 16);
 
     return () => clearInterval(interval);
   }, []);
@@ -54,9 +87,10 @@ export default function FloatingCircles() {
             backgroundColor: c.color,
             top: c.y,
             left: c.x,
+            opacity: c.opacity,
           }}
-          className="absolute rounded-full opacity-40 pointer-events-none"
-        ></div>
+          className="absolute rounded-full pointer-events-none"
+        />
       ))}
     </>
   );

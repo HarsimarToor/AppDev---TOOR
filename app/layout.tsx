@@ -20,15 +20,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className="flex flex-col min-h-screen">
-        <Header></Header>
-        <main className="flex-grow">{children}</main>
-        <Footer></Footer>
+      <body className="min-h-screen flex flex-col">
+        <Header />
+        {/* flex-1 makes main take all remaining vertical space */}
+        <main className="flex-1 relative">{children}</main>
+        <Footer />
       </body>
     </html>
   );

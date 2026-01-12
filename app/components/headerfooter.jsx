@@ -3,11 +3,11 @@ import { FaFacebook, FaInstagram } from "react-icons/fa";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 border-b bg-transparent backdrop-blur">
+    <header className="sticky top-0 z-50 border-b bg-white/60 backdrop-blur">
       <div className="flex items-center justify-between px-6 py-3">
         {/* Name */}
         <div className="text-2xl font-bold transition-transform duration-200 hover:scale-110 cursor-default">
-          Simar Toor
+          Harsimar Singh Toor
         </div>
 
         {/* Navigation */}
@@ -54,9 +54,9 @@ export default function Header() {
 
 export function Footer() {
   return (
-    <footer className="mt-8 border-t py-3 flex flex-col items-center justify-center">
+    <footer className="border-t py-6 flex flex-col items-center justify-center">
       {/* Centered text */}
-      <div className="text-lg font-semibold mb-4 text-center">
+      <div className="text-lg font-semibold mb-4 text-center ">
         Reach out to me via
       </div>
 
