@@ -2,7 +2,7 @@ import FloatingCircles from "./components/FloatingCircles";
 
 export default function Home() {
   return (
-    <main className="relative w-full flex flex-col md:flex-row items-center justify-center px-6 md:px-20 gap-10 overflow-hidden min-h-[calc(100vh-80px-100px)]">
+    <main className="relative w-full flex flex-col md:flex-row items-center justify-center px-6 md:px-20 gap-10 overflow-hidden flex-1">
       {/* Background layer */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <FloatingCircles />
@@ -10,10 +10,10 @@ export default function Home() {
 
       {/* Left side: text */}
       <div className="md:w-1/2 flex flex-col justify-center z-10 text-center md:text-left">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">
+        <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow font-serif transition-transform duration-200 hover:scale-110 cursor-default">
           I am Harsimar Singh
         </h1>
-        <p className="text-lg md:text-xl text-gray-700 drop-shadow">
+        <p className="text-lg md:text-2xl text-gray-700 drop-shadow semibold text-left font-serif transition-transform duration-200 hover:scale-110 cursor-default">
           Based in Davao City, I am currently a 2nd-year Computer Science
           student at Ateneo de Davao University.
         </p>

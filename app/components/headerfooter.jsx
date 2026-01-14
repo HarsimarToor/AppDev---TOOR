@@ -14,35 +14,40 @@ export default function Header() {
         <nav className="flex gap-2 text-lg">
           <Link
             href="/"
-            className="px-3 py-1 rounded-full hover:bg-blue-500 hover:text-white transition"
+            className="px-3 py-1 rounded-full hover:bg-blue-400 hover:text-black hover:font-bold-300 hover:text-xl
+                 transition transition-transform duration-200 hover:scale-110 cursor-default"
           >
             Home
           </Link>
 
           <Link
             href="/skills"
-            className="px-3 py-1 rounded-full hover:bg-blue-500 hover:text-white transition"
+            className="px-3 py-1 rounded-full hover:bg-blue-400 hover:text-black hover:font-bold-300 hover:text-xl
+                 transition transition-transform duration-200 hover:scale-110 cursor-default"
           >
             Skills
           </Link>
 
           <Link
             href="/experiences"
-            className="px-3 py-1 rounded-full hover:bg-blue-500 hover:text-white transition"
+            className="px-3 py-1 rounded-full hover:bg-blue-400 hover:text-black hover:font-bold-300 hover:text-xl
+                 transition transition-transform duration-200 hover:scale-110 cursor-default"
           >
             Experience
           </Link>
 
           <Link
             href="/about"
-            className="px-3 py-1 rounded-full hover:bg-blue-500 hover:text-white transition"
+            className="px-3 py-1 rounded-full hover:bg-blue-400 hover:text-black hover:font-bold-300 hover:text-xl
+                 transition transition-transform duration-200 hover:scale-110 cursor-default"
           >
             About
           </Link>
 
           <Link
             href="/contact"
-            className="px-3 py-1 rounded-full hover:bg-blue-500 hover:text-white transition"
+            className="px-3 py-1 rounded-full hover:bg-blue-400 hover:text-black hover:font-bold-300 hover:text-xl
+                 transition transition-transform duration-200 hover:scale-110 cursor-default"
           >
             Contact
           </Link>
@@ -70,7 +75,7 @@ export function Footer() {
           className="flex items-center gap-2 px-4 py-2 rounded-full hover:bg-pink-500 hover:text-white transition"
         >
           <FaInstagram className="text-xl" />
-          <span>Instagram</span>
+          <span></span>
         </a>
 
         {/* Facebook */}
@@ -81,7 +86,7 @@ export function Footer() {
           className="flex items-center gap-2 px-4 py-2 rounded-full hover:bg-blue-500 hover:text-white transition"
         >
           <FaFacebook className="text-xl" />
-          <span>Facebook</span>
+          <span></span>
         </a>
       </div>
     </footer>

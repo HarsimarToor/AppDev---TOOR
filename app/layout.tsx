@@ -26,7 +26,7 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col">
         <Header />
         {/* flex-1 makes main take all remaining vertical space */}
-        <main className="flex-1 relative">{children}</main>
+        <main className="flex-1 flex justify-center">{children}</main>
         <Footer />
       </body>
     </html>
