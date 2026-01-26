@@ -24,11 +24,9 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
-
-html, body {
-  max-width: 100%;
+.hero section {
+  position: relative;
   overflow-x: hidden;
-
 }
 
 @media (max-width: 768px) {
