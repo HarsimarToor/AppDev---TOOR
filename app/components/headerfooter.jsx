@@ -67,7 +67,7 @@ export function Footer() {
           href="https://instagram.com/cmrtoor"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 px-4 py-2 rounded-full hover:bg-pink-500 hover:text-white transition"
+          className="flex items-center gap-2 px-4 py-2 rounded-full hover:bg-pink-500   -white transition"
         >
           <FaInstagram className="text-xl" />
           <span>Instagram</span>

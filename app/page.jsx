@@ -9,16 +9,17 @@ export default function Home() {
       </div>
 
       {/* Left side: text */}
-      <div className="md:w-1/2 flex flex-col justify-center z-10 text-center md:text-left">
+      <div className="md:w-1/2 flex flex-col justify-center z-10 text-center md:text-left md:pr-10
+      ">
         <h1 className="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">
           I am Harsimar Singh
         </h1>
-        <p className="text-lg md:text-xl text-gray-700 drop-shadow">
-          Based in Davao City, I am currently a 2nd-year Computer Science
-          student at Ateneo de Davao University.
+        <p className="text-lg md:text-xl text-gray-700 drop-shadow mb-9">
+          Based in Davao City, I am currently a 2nd-year Computer Science student at Ateneo de Davao University.
         </p>
       </div>
 
+    
       {/* Right side: image */}
       <div className="md:w-1/2 flex justify-center z-10">
         <div className="flex-none w-[350px] h-[350px] md:w-[500px] md:h-[500px] rounded-full overflow-hidden border-4 border-gray-300">

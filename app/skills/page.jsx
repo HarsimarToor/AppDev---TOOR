@@ -24,8 +24,8 @@ const skillsData = [
   {
     title: "Tools",
     skills: [
-      { name: "Gitttttttttttt", level: 85 },
-      { name: "GitHubbbbbb", level: 85 },
+      { name: "Git", level: 85 },
+      { name: "GitHub", level: 85 },
       { name: "Figma", level: 70 },
       { name: "VS Code", level: 90 },
     ],
