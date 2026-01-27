@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import FloatingCircles from "../components/FloatingCircles";
 
 export default function Contact() {
@@ -13,6 +13,25 @@ export default function Contact() {
   });
 
   const [success, setSuccess] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [floatOffset, setFloatOffset] = useState(0);
+
+  // Mount animation
+  useEffect(() => {
+    const t = setTimeout(() => setMounted(true), 100);
+    return () => clearTimeout(t);
+  }, []);
+
+  // Floating animation
+  useEffect(() => {
+    let start = Date.now();
+    const animate = () => {
+      const t = (Date.now() - start) / 1000;
+      setFloatOffset(Math.sin(t) * 8);
+      requestAnimationFrame(animate);
+    };
+    animate();
+  }, []);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -20,20 +39,11 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (!form.name || !form.email || !form.message) return;
 
-    console.log(form); // later goes to EmailJS
-
+    console.log(form); // Replace with EmailJS later
     setSuccess(true);
-    setForm({
-      name: "",
-      email: "",
-      projectType: "",
-      budget: "",
-      message: "",
-    });
-
+    setForm({ name: "", email: "", projectType: "", budget: "", message: "" });
     setTimeout(() => setSuccess(false), 4000);
   };
 
@@ -44,9 +54,14 @@ export default function Contact() {
         <FloatingCircles />
       </div>
 
-      {/* Content */}
-      <div className="z-10 w-full max-w-4xl backdrop-blur-md bg-white/60 border border-gray-200 rounded-3xl p-8 shadow-xl">
-        <h1 className="text-4xl font-bold text-center mb-3">
+      {/* Contact Card */}
+      <div
+        style={{ transform: `translateY(${floatOffset}px)` }}
+        className={`z-10 w-full max-w-4xl backdrop-blur-md bg-white/60 border border-gray-200 rounded-3xl p-8 shadow-xl transition-all duration-1000 ${
+          mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}
+      >
+        <h1 className="text-4xl font-bold text-center mb-3 drop-shadow-lg">
           Let’s Work Together
         </h1>
 
@@ -57,43 +72,35 @@ export default function Contact() {
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div className="grid md:grid-cols-2 gap-4">
-            <input
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              value={form.name}
-              onChange={handleChange}
-              className="p-3 rounded-xl border outline-none focus:ring-2 focus:ring-gray-400"
-            />
-
-            <input
-              type="email"
-              name="email"
-              placeholder="Your Email"
-              value={form.email}
-              onChange={handleChange}
-              className="p-3 rounded-xl border outline-none focus:ring-2 focus:ring-gray-400"
-            />
+            {["name", "email"].map((field, i) => (
+              <input
+                key={i}
+                type={field === "email" ? "email" : "text"}
+                name={field}
+                placeholder={field === "name" ? "Your Name" : "Your Email"}
+                value={form[field]}
+                onChange={handleChange}
+                className="p-3 rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-300 shadow-sm hover:shadow-md"
+              />
+            ))}
           </div>
 
           <div className="grid md:grid-cols-2 gap-4">
-            <input
-              type="text"
-              name="projectType"
-              placeholder="Project Type (Website, App, Design...)"
-              value={form.projectType}
-              onChange={handleChange}
-              className="p-3 rounded-xl border outline-none focus:ring-2 focus:ring-gray-400"
-            />
-
-            <input
-              type="text"
-              name="budget"
-              placeholder="Estimated Budget"
-              value={form.budget}
-              onChange={handleChange}
-              className="p-3 rounded-xl border outline-none focus:ring-2 focus:ring-gray-400"
-            />
+            {["projectType", "budget"].map((field, i) => (
+              <input
+                key={i}
+                type="text"
+                name={field}
+                placeholder={
+                  field === "projectType"
+                    ? "Project Type (Website, App...)"
+                    : "Estimated Budget"
+                }
+                value={form[field]}
+                onChange={handleChange}
+                className="p-3 rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 shadow-sm hover:shadow-md"
+              />
+            ))}
           </div>
 
           <textarea
@@ -102,24 +109,25 @@ export default function Contact() {
             rows="5"
             value={form.message}
             onChange={handleChange}
-            className="w-full p-3 rounded-xl border outline-none focus:ring-2 focus:ring-gray-400 resize-none"
+            className="w-full p-3 rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-all duration-300 shadow-sm hover:shadow-md resize-none"
           />
 
           <button
             type="submit"
-            className="w-full bg-gray-900 text-white py-3 rounded-xl font-semibold hover:scale-[1.02] transition"
+            className="w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white py-3 rounded-xl font-semibold hover:scale-[1.03] hover:shadow-xl transition-all duration-300"
           >
             Contact Me
           </button>
 
           {success && (
-            <p className="text-center text-green-600 font-semibold mt-3">
+            <p className="text-center text-green-600 font-semibold mt-3 animate-pulse">
               Message sent successfully.
             </p>
           )}
         </form>
 
-        <div className="mt-10 text-center space-y-2 text-sm text-gray-600">
+        {/* Contact info */}
+        <div className="mt-10 text-center space-y-2 text-sm text-gray-600 italic">
           <p>Email: harsimarsinghtoor@gmail.com</p>
           <p>Phone: 09534917987</p>
           <p>Instagram: cmrtoor</p>
