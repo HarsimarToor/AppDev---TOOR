@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header, { Footer } from "./components/headerfooter";
+// import Header, { Footer } from "./components/headerfooter";
+import Menu from "./components/menu";
+import { Footer } from "./components/headerfooter";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,10 +25,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className="min-h-screen flex flex-col">
-        <Header />
-        {/* flex-1 makes main take all remaining vertical space */}
-        <main className="flex-1 relative">{children}</main>
+      <body className="">
+        <Menu />
+        <main className="">{children}</main>
         <Footer />
       </body>
     </html>

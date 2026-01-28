@@ -63,13 +63,12 @@ export default function Home() {
         </h1>
 
         <div className="relative z-10 p-4 md:p-6">
-  <p className="text-lg md:text-xl text-gray-600 leading-relaxed drop-shadow mb-9 max-w-xl italic font-serif">
-    Based in Davao City, I am currently a 2nd-year Computer Science student
-    at Ateneo de Davao University, focused on building modern, high-impact
-    web experiences.
-  </p>
-</div>
-
+          <p className="text-lg md:text-xl text-gray-600 leading-relaxed drop-shadow mb-9 max-w-xl italic font-serif">
+            Based in Davao City, I am currently a 2nd-year Computer Science
+            student at Ateneo de Davao University, focused on building modern,
+            high-impact web experiences.
+          </p>
+        </div>
       </div>
 
       {/* Right side: image */}
