@@ -1,15 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-// import Header, { Footer } from "./components/headerfooter";
 import Menu from "./components/menu";
-import { Footer } from "./components/headerfooter";
+import { Footer } from "./components/headerfooter"; // make sure this points to the fixed footer file
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
+const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -22,12 +17,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
-      <body className="">
+      <body className="flex flex-col min-h-screen">
         <Menu />
-        <main className="">{children}</main>
+        {/* Add bottom padding so content won't go under the fixed footer */}
+        <main className="flex-1 pb-32">{children}</main>
         <Footer />
       </body>
     </html>

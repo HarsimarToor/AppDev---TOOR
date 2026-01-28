@@ -1,27 +1,19 @@
-// ---------- FOOTER ----------
+"use client";
+
+import { FaInstagram, FaFacebook } from "react-icons/fa";
+
 export function Footer() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    const t = setTimeout(() => setMounted(true), 120);
-    return () => clearTimeout(t);
-  }, []);
-
   return (
     <footer
-      className={`
-        border-t border-gray-200 py-8 flex flex-col items-center justify-center
-        bg-white/40 backdrop-blur-md shadow-inner transition-all duration-700
-        ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}
-      `}
+      className="fixed bottom-0 left-0 w-full z-50 border-t border-gray-200 py-6 flex flex-col items-center justify-center
+      bg-white/40 backdrop-blur-md shadow-inner"
     >
       <div
         className="
-          text-lg font-semibold mb-4 text-center text-transparent bg-clip-text
-          bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
-          italic font-serif transition-all duration-300
-          hover:drop-shadow-[0_0_15px_rgba(128,0,255,0.8)]
-        "
+        text-lg font-bold mb-4 text-center text-transparent bg-clip-text
+        bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
+        italic font-serif
+      "
       >
         Reach out to me via
       </div>

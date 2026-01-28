@@ -37,15 +37,10 @@ export default function Header() {
     </div>
   );
 
-  // Header height adjustment: add extra padding if mobile menu is visible
-  const headerHeight = isMobile && mobileVisible ? "h-[88px]" : "h-[56px]";
-
   return (
     <>
-      <header
-        className={`sticky top-0 z-50 border-b border-gray-200 bg-white/40 backdrop-blur-md shadow-inner transition-all duration-700 ${headerHeight}`}
-      >
-        <div className="flex justify-between items-center px-4 py-2 relative font-bold">
+      <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/40 backdrop-blur-md shadow-inner transition-all duration-500">
+        <div className="flex justify-between items-center px-4 py-2 font-bold">
           {brand}
 
           {/* Desktop links */}
@@ -66,7 +61,7 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Mobile hamburger button */}
+          {/* Mobile hamburger */}
           <button
             className="md:hidden p-2 text-xl"
             onClick={() => setMobileVisible(!mobileVisible)}
@@ -78,7 +73,7 @@ export default function Header() {
 
         {/* Mobile horizontal menu */}
         {isMobile && mobileVisible && (
-          <div className="absolute top-full left-0 w-full bg-white/40 backdrop-blur-md shadow-inner flex justify-center gap-2 px-4 py-2 md:hidden transition-all duration-300">
+          <div className="absolute top-full left-0 w-full bg-white/40 backdrop-blur-md shadow-inner flex justify-center gap-2 px-2 py-1 md:hidden transition-all duration-300">
             {links.map((link) => (
               <Link
                 key={link.href}
@@ -89,7 +84,6 @@ export default function Header() {
                   hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
                   hover:text-white italic font-serif
                 "
-                onClick={() => setMobileVisible(false)} // close menu on click
               >
                 {link.label}
               </Link>
@@ -98,8 +92,8 @@ export default function Header() {
         )}
       </header>
 
-      {/* Spacer div to push page content down */}
-      {isMobile && mobileVisible && <div className="h-[48px] md:hidden" />}
+      {/* Add minimal spacer to prevent overlapping page content */}
+      {isMobile && mobileVisible && <div className="h-[32px] md:hidden" />}
     </>
   );
 }
