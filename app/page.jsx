@@ -8,6 +8,7 @@ export default function Home() {
   const [parallax, setParallax] = useState(0);
   const [floatOffset, setFloatOffset] = useState(0);
   const [mounted, setMounted] = useState(false);
+  const [textHover, setTextHover] = useState(false);
 
   // Parallax scroll
   useEffect(() => {
@@ -44,19 +45,23 @@ export default function Home() {
       <div className="absolute inset-0 z-0 pointer-events-none">
         <FloatingCircles />
       </div>
-
       {/* Left side: text */}
       <div
         className={`md:w-1/2 flex flex-col justify-center z-10 text-center md:text-left md:pr-10
-        transition-all duration-1000 ease-out
-        ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+    transition-transform duration-300 ease-out
+    ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+        style={{
+          transform: textHover ? "scale(1.1)" : "scale(1)",
+        }}
+        onMouseEnter={() => setTextHover(true)}
+        onMouseLeave={() => setTextHover(false)}
       >
         <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg tracking-tight">
           I am{" "}
           <span
             className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
-            bg-clip-text text-transparent
-            font-  tracking-tight"
+        bg-clip-text text-transparent
+        font- tracking-tight"
           >
             Harsimar Singh
           </span>
@@ -70,7 +75,6 @@ export default function Home() {
           </p>
         </div>
       </div>
-
       {/* Right side: image */}
       <div className="md:w-1/2 flex justify-center z-10">
         <div
@@ -81,7 +85,7 @@ export default function Home() {
             opacity: mounted ? 1 : 0,
           }}
           className="relative flex-none w-[350px] h-[350px] md:w-[500px] md:h-[500px]
-          transition-all duration-1000 ease-out hover:scale-[1.03]"
+          transition-all duration-600 ease-out hover:scale-[1.4]"
         >
           {/* Glow halo */}
           <div className="absolute inset-0 rounded-full bg-indigo-400/30 blur-3xl scale-110"></div>
