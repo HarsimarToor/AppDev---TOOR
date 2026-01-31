@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 export default function Header() {
   const [mobileVisible, setMobileVisible] = useState(false);
@@ -31,7 +31,7 @@ export default function Header() {
         transition-transform duration-300 hover:scale-105
         text-transparent bg-clip-text
         bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500
-         tracking-tight drop-shadow-md
+        tracking-tight drop-shadow-sm
       "
     >
       Harsimar Singh Toor
@@ -40,7 +40,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/30 backdrop-blur-md shadow-inner transition-all duration-500">
+      <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-md shadow-sm">
         <div className="flex justify-between items-center px-6 py-3 font-medium">
           {brand}
 
@@ -52,9 +52,9 @@ export default function Header() {
                 href={link.href}
                 className="
                   px-5 py-2 rounded-full transition-all duration-300
-                  hover:scale-105 hover:shadow-lg
+                  hover:scale-105 hover:shadow-md
                   hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
-                  hover:text-white font-sans font-semibold tracking-wide
+                  hover:text-white font-semibold tracking-wide
                 "
               >
                 {link.label}
@@ -62,40 +62,43 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Mobile hamburger */}
+          {/* Mobile button */}
           <button
             className="md:hidden p-2 text-2xl text-gray-700"
-            onClick={() => setMobileVisible(!mobileVisible)}
+            onClick={() => setMobileVisible((v) => !v)}
             aria-label="Toggle menu"
           >
-            <FaBars />
+            {mobileVisible ? <FaTimes /> : <FaBars />}
           </button>
         </div>
 
-        {/* Mobile menu */}
-        {isMobile && mobileVisible && (
-          <div className="absolute top-full left-0 w-full bg-white/40 backdrop-blur-md shadow-inner flex flex-col gap-2 px-4 py-3 md:hidden transition-all duration-300 rounded-b-lg">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="
-                  px-4 py-2 rounded-lg transition-all duration-300
-                  hover:scale-105 hover:shadow-lg
-                  hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
-                  hover:text-white font-sans font-semibold text-center
-                "
-                onClick={() => setMobileVisible(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        )}
+        {/* Mobile slide bar */}
+        <div
+          className={`
+            fixed top-[64px] right-0 w-full h-[60px]
+            bg-white shadow-lg md:hidden
+            flex items-center justify-center gap-3 px-3
+            transition-transform duration-300 ease-out
+            ${mobileVisible ? "translate-x-0" : "translate-x-full"}
+          `}
+        >
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="
+                px-4 py-2 rounded-full transition-all duration-300
+                hover:scale-105 hover:shadow-md
+                hover:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
+                hover:text-white font-semibold text-sm
+              "
+              onClick={() => setMobileVisible(false)}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
       </header>
-
-      {/* Spacer to prevent overlap on mobile */}
-      {isMobile && mobileVisible && <div className="h-[44px] md:hidden" />}
     </>
   );
 }
