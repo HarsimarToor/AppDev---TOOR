@@ -12,7 +12,7 @@ export function Footer() {
         className="
         text-lg font-bold mb-4 text-center text-transparent bg-clip-text
         bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
-        italic font-serif
+        
       "
       >
         Reach out to me via
